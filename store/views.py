@@ -78,6 +78,20 @@ def search(request):
     return render(request, 'store/store.html', context)
 
 
+def range_filter(request):
+    min_price = request.GET['min_price']
+    max_price = request.GET['max_price']
+    if min_price and max_price:
+        products = Product.objects.order_by('-created_date').filter(
+            price__lt=max_price, price__gte=min_price)
+        product_count = products.count()
+    context = {
+        'products': products,
+        'product_count': product_count,
+    }
+    return render(request, 'store/store.html', context)
+
+
 def submit_review(request, product_id):
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
