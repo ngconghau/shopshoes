@@ -60,7 +60,6 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
@@ -211,7 +210,10 @@ def resetPassword(request):
 def dashboard(request):
     orders = Order.objects.order_by('-created_at').filter(user=request.user, is_ordered=True)
     orders_count = orders.count()
-    userprofile = UserProfile.objects.get(user_id=request.user.id)
+    try:
+        userprofile = UserProfile.objects.get(user_id=request.user.id)
+    except UserProfile.DoesNotExist:
+        userprofile = None
     context = {
         "orders_count": orders_count,
         "userprofile": userprofile
