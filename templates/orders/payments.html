@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-
 
 <section class="section-content padding-y bg">
 	<div class="container">
@@ -39,7 +37,6 @@
 									<th scope="col">Sản phẩm</th>
 									<th scope="col-md-auto" >Số lượng</th>
 									<th scope="col" >Giá</th>
-
 								</tr>
 							</thead>
 							<tbody>
@@ -76,7 +73,6 @@
 						</table>
 					</div>
 				</div>
-
 			</aside> <!-- col.// -->
 			<aside class="col-lg-4">
 
@@ -104,18 +100,13 @@
 					</div> <!-- card-body.// -->
 				</div> <!-- card.// -->
 			</aside> <!-- col.// -->
-
-
 		</div> <!-- row.// -->
-
 		<!-- ============================ COMPONENT 1 END .// ================================= -->
-
 	</div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
 <script>
-
 	function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -140,7 +131,6 @@
 	var redirect_url = "{% url 'order_complete' %}"
 	// Render the PayPal button into #paypal-button-container
 	paypal.Buttons({
-
 		style: {
 			color: 'blue',
 			shape: 'rect',
@@ -186,8 +176,6 @@
 				}
 			});
 		}
-
-
 	}).render('#paypal-button-container');
 </script>
 

@@ -10,7 +10,6 @@
         {% else %}
         <h2 class="title-page">Cửa hàng chúng tôi</h2>
         {% endif %}
-
     </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION INTRO END// ========================= -->
@@ -40,35 +39,6 @@
                         </div>
                     </article> <!-- filter-group  .// -->
                     <article class="filter-group">
-                        <!--		<header class="card-header">-->
-                        <!--			<a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">-->
-                        <!--				<i class="icon-control fa fa-chevron-down"></i>-->
-                        <!--				<h6 class="title">Sizes </h6>-->
-                        <!--			</a>-->
-                        <!--		</header>-->
-                        <!--		<div class="filter-content collapse show" id="collapse_4" style="">-->
-                        <!--			<div class="card-body">-->
-                        <!--			  <label class="checkbox-btn">-->
-                        <!--			    <input type="checkbox">-->
-                        <!--			    <span class="btn btn-light"> 39 </span>-->
-                        <!--			  </label>-->
-
-                        <!--			  <label class="checkbox-btn">-->
-                        <!--			    <input type="checkbox">-->
-                        <!--			    <span class="btn btn-light"> 40 </span>-->
-                        <!--			  </label>-->
-
-                        <!--			  <label class="checkbox-btn">-->
-                        <!--			    <input type="checkbox">-->
-                        <!--			    <span class="btn btn-light"> 41 </span>-->
-                        <!--			  </label>-->
-
-                        <!--			  <label class="checkbox-btn">-->
-                        <!--			    <input type="checkbox">-->
-                        <!--			    <span class="btn btn-light"> 42 </span>-->
-                        <!--			  </label>-->
-                        <!--		</div>&lt;!&ndash; card-body.// &ndash;&gt;-->
-                        <!--		</div>-->
                     </article> <!-- filter-group .// -->
 
                     <article class="filter-group">
@@ -80,35 +50,35 @@
                         </header>
                         <div class="filter-content collapse show" id="collapse_3" style="">
                             <div class="card-body">
-
+                                <form action="{% url 'range_filter' %}" method="GET">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Min</label>
                                         <!-- <input class="form-control" placeholder="$0" type="number"> -->
-                                        <select class="mr-2 form-control">
-                                            <option value="0">$0</option>
-                                            <option value="50">$50</option>
-                                            <option value="100">$100</option>
-                                            <option value="150">$150</option>
-                                            <option value="200">$200</option>
-                                            <option value="500">$500</option>
-                                            <option value="1000">$1000</option>
+                                        <select class="mr-2 form-control" name="min_price">
+                                            <option value="0">0</option>
+                                            <option value="150000">150.000</option>
+                                            <option value="250000">250.000</option>
+                                            <option value="350000">350.000</option>
+                                            <option value="450000">450.000</option>
+                                            <option value="550000">550.000</option>
                                         </select>
                                     </div>
                                     <div class="form-group text-right col-md-6">
                                         <label>Max</label>
-                                        <select class="mr-2 form-control">
-                                            <option value="50">$50</option>
-                                            <option value="100">$100</option>
-                                            <option value="150">$150</option>
-                                            <option value="200">$200</option>
-                                            <option value="500">$500</option>
-                                            <option value="1000">$1000</option>
-                                            <option value="2000">$2000+</option>
+                                        <select class="mr-2 form-control" name="max_price">
+                                            <option value="150000">150.000</option>
+                                            <option value="250000">250.000</option>
+                                            <option value="350000">350.000</option>
+                                            <option value="450000">450.000</option>
+                                            <option value="1000000">1.000.000</option>
+                                            <option value="1500000">1.500.000</option>
+                                            <option value="2000000">2.000.000</option>
                                         </select>
                                     </div>
                                 </div> <!-- form-row.// -->
-                                <button class="btn btn-block btn-primary">Lọc</button>
+                                <button class="btn btn-block btn-primary" type="submit">Lọc</button>
+                                </form>
                             </div><!-- card-body.// -->
                         </div>
                     </article> <!-- filter-group .// -->

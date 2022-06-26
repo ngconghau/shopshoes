@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Xin chào {{user.first_name}},
+
+Bạn vừa thay đổi mật khẩu tài khoản thành công.
+
+Nếu bạn nghĩ nó không phải bạn đã làm vui lòng lấy lại mật khẩu tại đây.
+http://{{domain}}{% url 'forgotPassword' %}
+
+Cảm ơn,
+{% endautoescape %}
