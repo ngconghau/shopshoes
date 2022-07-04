@@ -38,7 +38,11 @@
                                         <li><strong>Đơn hàng</strong> #{{order.order_number}}</li>
                                         <li><strong>Mã giao dịch</strong> {{order.payment.payment_id}}</li>
                                         <li><strong>Ngày đặt đơn:</strong> {{order.created_at}}</li>
-                                        <li><strong>Trạng thái thanh toán:</strong> {{order.payment.status}}</li>
+                                        {% if order.payment.status == 'Accepted' %}
+                                            <li><strong>Trạng thái thanh toán:</strong> Chờ thanh toán</li>
+                                        {% else %}
+                                            <li><strong>Trạng thái thanh toán:</strong> Đã thanh toán</li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </div>

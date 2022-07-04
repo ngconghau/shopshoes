@@ -232,18 +232,47 @@ def my_orders(request):
 
 @login_required(login_url='login')
 def edit_profile(request):
-    userprofile = get_object_or_404(UserProfile, user=request.user)
-    if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, 'Thông tin của bạn đã được cập nhật')
-            return redirect('edit_profile')
+    # userprofile = get_object_or_404(UserProfile, user=request.user)
+    # if request.method == 'POST':
+    #     user_form = UserForm(request.POST, instance=request.user)
+    #     profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+    #     if user_form.is_valid() and profile_form.is_valid():
+    #         user_form.save()
+    #         profile_form.save()
+    #         messages.success(request, 'Thông tin của bạn đã được cập nhật')
+    #         return redirect('edit_profile')
+    # else:
+    #     user_form = UserForm(instance=request.user)
+    #     profile_form = UserProfileForm(instance=userprofile)
+    user_form = UserForm()
+    profile_form = UserProfileForm()
+    if UserProfile.objects.filter(user=request.user).exists():
+        userprofile = UserProfile.objects.get(user_id=request.user.id)
+        if request.method == 'POST':
+            user_form = UserForm(request.POST, instance=request.user)
+            profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+            if user_form.is_valid() and profile_form.is_valid():
+                user_form.save()
+                profile_form.save()
+                messages.success(request, 'Thông tin của bạn đã được cập nhật')
+                return redirect('edit_profile')
+        else:
+            user_form = UserForm(instance=request.user)
+            profile_form = UserProfileForm(instance=userprofile)
     else:
-        user_form = UserForm(instance=request.user)
-        profile_form = UserProfileForm(instance=userprofile)
+        userprofile = None
+        if request.method == 'POST':
+            user_form = UserForm(request.POST, instance=request.user)
+            profile_form = UserProfileForm(request.POST, request.FILES)
+            if user_form.is_valid() and profile_form.is_valid():
+                user_form.save()
+                profile_form.instance.user = request.user
+                profile_form.save()
+                messages.success(request, 'Thông tin của bạn đã dược cập nhật')
+                return redirect('edit_profile')
+        else:
+            user_form = UserForm(instance=request.user)
+            profile_form = UserProfileForm()
     context = {
         'user_form': user_form,
         'profile_form': profile_form,

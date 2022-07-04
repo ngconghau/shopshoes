@@ -23,14 +23,11 @@ def payments(request):
         status=body['status'],
     )
     payment.save()
-
     order.payment = payment
     order.is_ordered = True
     order.save()
-
     # Move the cart items to Order Product table
     cart_items = CartItem.objects.filter(user=request.user)
-
     for item in cart_items:
         orderproduct = OrderProduct()
         orderproduct.order_id = order.id
@@ -81,7 +78,6 @@ def place_order(request, total=0, quantity=0, ):
     cart_count = cart_items.count()
     if cart_count <= 0:
         return redirect('store')
-
     grand_total = 0
     tax = 0
     for cart_item in cart_items:
@@ -90,8 +86,8 @@ def place_order(request, total=0, quantity=0, ):
     tax = 30000
     grand_total = total + tax
     price_in_usd = round((grand_total / 23000), 2)
-
     if request.method == 'POST':
+        payment_method = request.POST['payment_method']
         form = OrderForm(request.POST)
         if form.is_valid():
             # Store all the billing information inside Order table
@@ -120,12 +116,12 @@ def place_order(request, total=0, quantity=0, ):
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
-
             order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
             context = {
                 'order': order,
                 'cart_items': cart_items,
                 'total': total,
+                'payment_method': payment_method,
                 'tax': tax,
                 'grand_total': grand_total,
                 'price_in_usd': price_in_usd
@@ -142,13 +138,10 @@ def order_complete(request):
     try:
         order = Order.objects.get(order_number=order_number, is_ordered=True)
         ordered_products = OrderProduct.objects.filter(order_id=order.id)
-
         subtotal = 0
         for i in ordered_products:
             subtotal += i.product_price * i.quantity
-
         payment = Payment.objects.get(payment_id=transID)
-
         context = {
             'order': order,
             'ordered_products': ordered_products,

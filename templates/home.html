@@ -21,10 +21,13 @@
         <div class="row">
             {% for product in products %}
             <div class="col-md-3">
-                <div class="card card-product-grid">
+                <div class="card card-product-grid ">
                     <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
                     <figcaption class="info-wrap">
-                        <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                        <div style=" height: 100px">
+                             <div class="title-item">
+                            <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                        </div>
                         <div class="price mt-1">{{ product.price }} vnđ</div> <!-- price-wrap.// -->
                         <div class="rating-star">
                             <span>
@@ -39,6 +42,7 @@
                                 <i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}"
                                    aria-hidden="true"></i>
                             </span>
+                        </div>
                         </div>
                     </figcaption>
                 </div>

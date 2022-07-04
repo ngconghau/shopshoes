@@ -28,7 +28,6 @@
 </tr>
 </thead>
 <tbody>
-
 {% for cart_item in cart_items %}
 <tr>
 	<td>
@@ -60,7 +59,7 @@
 									{% for item in cart_item.variations.all %}
 										<input type="hidden" name="{{ item.variation_category | lower }}" value="{{ item.variation_value | capfirst }}">
 									{% endfor %}
-									<button class="btn btn-light" type="submit" id="button-minus"> <i class="fa fa-plus"></i> </button>
+									<button class="btn btn-light" type="submit" id="button-minus"><i class="fa fa-plus"></i></button>
 								</form>
 							</div>
 						</div> <!-- input-group.// -->
@@ -81,10 +80,8 @@
 </tbody>
 </table>
 </div> <!-- card.// -->
-
 	</aside> <!-- col.// -->
 	<aside class="col-lg-3">
-
 		<div class="card">
 		<div class="card-body">
 			<dl class="dlist-align">
@@ -107,10 +104,7 @@
 			<a href="{% url 'store' %}" class="btn btn-light btn-block">Tiếp tục mua sắm</a>
 		</div> <!-- card-body.// -->
 		</div> <!-- card.// -->
-
 </aside> <!-- col.// -->
-
-
 </div> <!-- row.// -->
 {% endif %}
 <!-- ============================ COMPONENT 1 END .// ================================= -->

@@ -56,5 +56,6 @@ class UserProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['profile_picture'].widget.attrs['required'] = True
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'

@@ -101,8 +101,10 @@
                                 <a href="{{ product.get_url }}"><img src="{{ product.images.url }}"></a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                                <div style="height: 100px">
+                                    <div class="title-item">
+                                        <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                                    </div>
                                     <div class="price-wrap mt-2">
                                         <span class="price">{{ product.price }} vnđ</span>
                                     </div> <!-- price-wrap.// -->
